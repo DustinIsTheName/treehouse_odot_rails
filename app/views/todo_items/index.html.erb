@@ -6,7 +6,11 @@
 		<%= todo_item.content %>
 		<%= link_to "Edit", edit_todo_list_todo_item_path(todo_item) %>
 		<%= link_to "Delete", todo_list_todo_item_path(todo_item), method: :delete, data: { confirm: "Are you sure?" } %>
-		<%= link_to "Mark Complete", complete_todo_list_todo_item_path(todo_item), method: :patch %>
+		<% if todo_item.completed? %>
+			<%= todo_item.completed_at %>
+		<% else %>
+			<%= link_to "Mark Complete", complete_todo_list_todo_item_path(todo_item), method: :patch %>
+		<% end %>
 	</li>
 	<% end %>
 </ul>
